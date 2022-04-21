@@ -80,6 +80,14 @@ usertrap(void)
   if(which_dev == 2)
     yield();
 
+  if(which_dev == 2){
+    p->timer_count++;
+    if(p->timer_count >= 10){
+      p->timer_count = 0;
+      print_info();
+    }
+  }
+
   usertrapret();
 }
 

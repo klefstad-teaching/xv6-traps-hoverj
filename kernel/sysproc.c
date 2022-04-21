@@ -95,3 +95,13 @@ sys_uptime(void)
   release(&tickslock);
   return xticks;
 }
+//these two functions will need to be edited in alarm
+uint64
+sys_sigalarm(void){
+  return 0;
+}
+
+uint64
+sys_sigreturn(void){
+  return 0;
+}

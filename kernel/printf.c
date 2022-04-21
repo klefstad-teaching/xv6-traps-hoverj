@@ -132,3 +132,17 @@ printfinit(void)
   initlock(&pr.lock, "pr");
   pr.locking = 1;
 }
+
+void
+print_info(void){
+  uint64 fp = r_fp();
+  uint64 ret_addr = *(uint64 *)(fp - 8);
+  uint64 ret_static = (fp -8);
+  printf("\nReturn Address: %p\n", ret_addr);
+  printf("Return Address without casting: %p\n", ret_static);
+
+  printf("PID(%d) User Program Counter: %p\n", myproc()->pid, myproc()->trapframe->epc);
+  //Program Counter from user code
+  //First return address
+
+}//end of prnt void

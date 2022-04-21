@@ -135,6 +135,8 @@ found:
     return 0;
   }
 
+  p->timer_count = 0;
+
   // Set up new context to start executing at forkret,
   // which returns to user space.
   memset(&p->context, 0, sizeof(p->context));
@@ -294,6 +296,8 @@ fork(void)
 
   // Cause fork to return 0 in the child.
   np->trapframe->a0 = 0;
+
+  np->timer_count = p->timer_count;
 
   // increment reference counts on open file descriptors.
   for(i = 0; i < NOFILE; i++)
