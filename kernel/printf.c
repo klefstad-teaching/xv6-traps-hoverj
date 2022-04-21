@@ -148,19 +148,16 @@ print_info(void){
 }//end of prnt void
 
 //BROKEN BUT STARTED
+//almost there but hint to change the while loop condition
 void
 backtrace(void){
   uint64 fp = r_fp();
-  uint64 savedSpRoundDown = PGROUNDDOWN(fp);
-  uint64 spRoundUp = PGROUNDUP(fp);
 
   printf("backtrace:\n");
-
-  for(uint64 address = spRoundUp-8; address > savedSpRoundDown; address = *(uint64 *)(address - 16)){
-     printf("roundDownAddress:%p\n currentAddress:%p\n roundUPAddress:%p\n", savedSpRoundDown, address, spRoundUp);
-
-     printf("%p\n", address);
-
-  }//end of for loop?
+  while(PGROUNDDOWN(fp) <  PGROUNDUP(fp)){ 
+    printf("%p\n", *(uint64 *)(fp - 8));
+    fp = *(uint64 *)(fp - 16);
+   
+  }//end of while
 
 }//end of backtrace

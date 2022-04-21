@@ -1,1 +1,13 @@
-1. just creating file
+1. a0,a1, a2 hold arguments for function calls. 13 is held in a2.
+
+2. At symbol 28: printf. The call to g is inlined andtakes up  the space 24.The function statically calculated the return value and replaced the function call with the correct value during compile time.
+
+3.print f is located at 1544 off of the ra.
+
+4. The return address to the location of the line of the jalr instruction:608080e7  
+
+5. He110 World, the value 57616 would not need to be changed, but i would need to be reversed.
+
+6. The value of y will be some random integer. This is because printf is 2 values to print  but is only recieving one.  Because printf is defined with (...) the parameters are not checked to ensure the
+correct parameter passage. C is then forced to just use whatever memory is contained next whichat  this pointis garbage memory and  thus is completely unpredictable of an output. Whatever is stored
+in that garbage memory will be forced to be represented as an integer. 
