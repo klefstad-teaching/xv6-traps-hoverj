@@ -146,3 +146,21 @@ print_info(void){
   //First return address
 
 }//end of prnt void
+
+//BROKEN BUT STARTED
+void
+backtrace(void){
+  uint64 fp = r_fp();
+  uint64 savedSpRoundDown = PGROUNDDOWN(fp);
+  uint64 spRoundUp = PGROUNDUP(fp);
+
+  printf("backtrace:\n");
+
+  for(uint64 address = spRoundUp-8; address > savedSpRoundDown; address = *(uint64 *)(address - 16)){
+     printf("roundDownAddress:%p\n currentAddress:%p\n roundUPAddress:%p\n", savedSpRoundDown, address, spRoundUp);
+
+     printf("%p\n", address);
+
+  }//end of for loop?
+
+}//end of backtrace

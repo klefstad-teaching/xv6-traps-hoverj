@@ -81,6 +81,7 @@ void            printf(char*, ...);
 void            panic(char*) __attribute__((noreturn));
 void            printfinit(void);
 void            print_info(void);
+void            backtrace(void);
 
 // proc.c
 int             cpuid(void);
@@ -139,6 +140,7 @@ int             argaddr(int, uint64 *);
 int             fetchstr(uint64, char*, int);
 int             fetchaddr(uint64, uint64*);
 void            syscall();
+
 
 // trap.c
 extern uint     ticks;
