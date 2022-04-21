@@ -1,0 +1,64 @@
+{
+  "tests": [
+    {
+      "name": "Setup Environment",
+      "setup": "",
+      "run": "sudo apt-get update; sudo apt-get install git build-essential gdb-multiarch qemu-system-misc gcc-riscv64-linux-gnu binutils-riscv64-linux-gnu",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": null
+    },
+    {
+      "name": "Make",
+      "setup": "",
+      "run": "make",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": null
+    },
+    {
+      "name": "backtrace",
+      "setup": "",
+      "run": "./grade-lab-traps \"backtrace\"",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 20
+    },
+    {
+      "name": "alarmtest-0",
+      "setup": "",
+      "run": "./grade-lab-traps \"alarmtest: test0\"",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 30
+    },
+    {
+      "name": "alarmtest-1",
+      "setup": "",
+      "run": "./grade-lab-traps \"alarmtest: test1\"",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 30
+    },
+    {
+      "name": "alarmtest-2",
+      "setup": "",
+      "run": "./grade-lab-traps \"alarmtest: test2\"",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 20
+    }
+  ]
+}
