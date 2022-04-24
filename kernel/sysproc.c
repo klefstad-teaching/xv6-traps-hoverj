@@ -99,6 +99,20 @@ sys_uptime(void)
 //these two functions will need to be edited in alarm
 uint64
 sys_sigalarm(void){
+  int timerTicks;
+  uint64 functionPointer;
+
+  //get the parameters that were passed in and check for validitity
+  if(argint(0, &timerTicks) < 0){
+    return -1;
+  }
+
+  if(argaddr(1, &functionPointer) < 0){
+    return -1;
+  }
+  myproc()->timeBetweenEachCall = timerTicks;
+  myproc()->functionPointer = functionPointer;  
+
   return 0;
 }
 

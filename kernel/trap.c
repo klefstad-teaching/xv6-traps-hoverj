@@ -82,9 +82,10 @@ usertrap(void)
 
   if(which_dev == 2){
     p->timer_count++;
-    if(p->timer_count >= 10){
+    if((p->timer_count >= p->timeBetweenEachCall) && p->timeBetweenEachCall){
       p->timer_count = 0;
-      print_info();
+      //print_info();
+      p->trapframe->epc = p->functionPointer;
     }
   }
 
