@@ -83,13 +83,46 @@ usertrap(void)
   if(which_dev == 2){
     p->timer_count++;
     if((p->timer_count >= p->timeBetweenEachCall) && p->timeBetweenEachCall){
-      p->timer_count = 0;
-      //print_info();
+     
+      if(p->canEnterKernel == 1){	   
+        p->timer_count = 0;
+        //print_info();
       
-      //move all memory from the current active trapframe to a temp one
-      memmove(p->trapframe, &(p->returnTrapFrame), sizeof(p->trapframe));
-      p->canEnterKernel = 0;
+       p->returnTrapFrame->epc = p->trapframe->epc;
+       p->returnTrapFrame->ra = p->trapframe->ra;
+       p->returnTrapFrame->sp = p->trapframe->sp;
+       p->returnTrapFrame->gp = p->trapframe->gp;
+       p->returnTrapFrame->tp = p->trapframe->tp;
+       p->returnTrapFrame->s0 = p->trapframe->s0;
+       p->returnTrapFrame->s1 = p->trapframe->s1;
+       p->returnTrapFrame->s2 = p->trapframe->s2;
+       p->returnTrapFrame->s3 = p->trapframe->s3;
+       p->returnTrapFrame->s4 = p->trapframe->s4;
+       p->returnTrapFrame->s5 = p->trapframe->s5;
+       p->returnTrapFrame->s6 = p->trapframe->s6;
+       p->returnTrapFrame->s7 = p->trapframe->s7;
+       p->returnTrapFrame->s8 = p->trapframe->s8;
+      p->returnTrapFrame->s9 = p->trapframe->s9;
+      p->returnTrapFrame->s10 = p->trapframe->s10;
+      p->returnTrapFrame->s11 = p->trapframe->s11;
+      p->returnTrapFrame->t0 = p->trapframe->t0;
+      p->returnTrapFrame->t1 = p->trapframe->t1;
+      p->returnTrapFrame->t2 = p->trapframe->t2;
+      p->returnTrapFrame->t3 = p->trapframe->t3;      
+      p->returnTrapFrame->t4 = p->trapframe->t4;
+      p->returnTrapFrame->t5 = p->trapframe->t5;
+      p->returnTrapFrame->t6 = p->trapframe->t6;
+      p->returnTrapFrame->a0 = p->trapframe->a0;
+      p->returnTrapFrame->a1 = p->trapframe->a1;
+      p->returnTrapFrame->a2 = p->trapframe->a2;
+      p->returnTrapFrame->a3 = p->trapframe->a3;
+      p->returnTrapFrame->a4 = p->trapframe->a4;
+      p->returnTrapFrame->a5 = p->trapframe->a5;
+      p->returnTrapFrame->a6 = p->trapframe->a6;
+      p->returnTrapFrame->a7 = p->trapframe->a7;		    
+       p->canEnterKernel = 0;
       p->trapframe->epc = p->functionPointer;
+      }
     }
   }
 
