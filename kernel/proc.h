@@ -98,7 +98,7 @@ struct proc {
   // wait_lock must be held when using this:
   struct proc *parent;         // Parent process
 
-  struct trapframe *returnTrapFrame;
+  struct trapframe returnTrapFrame;
   int canEnterKernel;
 
   // these are private to the process, so p->lock need not be held.
