@@ -110,8 +110,11 @@ sys_sigalarm(void){
   if(argaddr(1, &functionPointer) < 0){
     return -1;
   }
+  //set the two values passed in and save them to the current proc
   myproc()->timeBetweenEachCall = timerTicks;
   myproc()->functionPointer = functionPointer;  
+
+  //ensure that canEnterKernel is set to 1 so that the future 1/0 check can work
   myproc()->canEnterKernel = 1;
   return 0;
 }

@@ -81,16 +81,26 @@ usertrap(void)
     yield();
 
   if(which_dev == 2){
+    //increment the timer count in which a timer interrupt occured
     p->timer_count++;   
-    if((p->timer_count >= p->timeBetweenEachCall) && p->timeBetweenEachCall){
-      if(p->canEnterKernel == 1){	   
+
+    //1st check if enough time units have passed
+    //2nd check and ensure timeBetween call has been set as an actual value (greater than 0)
+    //3rd check that p->canEnterKernel is greater than 0
+    //
+    //p->canEnterKernel is used to make sure that another alarm call isn't made while one is in progress
+    if((p->timer_count >= p->timeBetweenEachCall) && p->timeBetweenEachCall && p->canEnterKernel > 0){
         p->timer_count = 0;
         //print_info();
-     		    
+     
+	//set p->canEnterKernel to 0 to indicate an alarm call is in progress
        p->canEnterKernel = 0;
+
+       //move all memory from the current active trapframe into a temp one
        memmove(&(p->returnTrapFrame), p->trapframe, sizeof(struct trapframe));
+       //set the current trapframe epc (the value that says where to go next) to the function specified in the call
       p->trapframe->epc = p->functionPointer;
-      }
+      
     }
   }
 
