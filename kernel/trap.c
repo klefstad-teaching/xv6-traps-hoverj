@@ -85,6 +85,10 @@ usertrap(void)
     if((p->timer_count >= p->timeBetweenEachCall) && p->timeBetweenEachCall){
       p->timer_count = 0;
       //print_info();
+      
+      //move all memory from the current active trapframe to a temp one
+      memmove(p->trapframe, &(p->returnTrapFrame), sizeof(p->trapframe));
+      p->canEnterKernel = 0;
       p->trapframe->epc = p->functionPointer;
     }
   }

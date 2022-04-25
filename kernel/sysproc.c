@@ -112,11 +112,17 @@ sys_sigalarm(void){
   }
   myproc()->timeBetweenEachCall = timerTicks;
   myproc()->functionPointer = functionPointer;  
-
+  myproc()->canEnterKernel = 1;
   return 0;
 }
 
 uint64
 sys_sigreturn(void){
-  return 0;
+
+    //move all memory from the temporary trapframe back to the main trapframe
+    memmove(myproc()->returnTrapFrame, &(myproc()->trapframe), sizeof(myproc()->trapframe));
+
+    //allow the handler to be called again
+    myproc()->canEnterKernel = 1;
+    return 0;
 }
